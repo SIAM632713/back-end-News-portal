@@ -12,7 +12,7 @@ dotenv.config();
 app.use(express.json());
 app.use(cookieParser());
 app.use(cors({
-    origin: ["http://localhost:5173","https://news-portal-iota-two.vercel.app"],
+    origin: ["http://localhost:5173","https://news-portal-psi-two.vercel.app"],
     credentials: true,
 }))
 
