@@ -7,7 +7,7 @@ const router = express.Router();
 
 router.get('/get-singleuser/:id',verifyToken,getSingleUser)
 router.get('/get-alluser',verifyToken,verifyAdmin,getAllusers)
-router.delete('/delete-user/:id',verifyToken,deleteUser)
+router.delete('/delete-user/:id',verifyToken,verifyAdmin,deleteUser)
 router.post('/update-user/:id',verifyToken,updateUser)
 router.post("/update-user-role/:id",updateUserRole)
 
