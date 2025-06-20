@@ -5,6 +5,6 @@ import {verifyAdmin} from "../middleware/verifyAdmin.js";
 
 const router = express.Router();
 
-router.get("/admin-state",verifyToken,verifyAdmin,adminState)
+router.get("/admin-state",verifyAdmin,adminState)
 
 export default router
