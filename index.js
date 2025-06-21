@@ -6,15 +6,15 @@ import dotenv from 'dotenv';
 
 const app = express();
 
-const port = process.env.PORT || 5000;
-dotenv.config();
-
-app.use(express.json());
-app.use(cookieParser());
 app.use(cors({
     origin: ["http://localhost:5173","https://newsportal-two.vercel.app"],
     credentials: true,
 }))
+app.use(express.json());
+app.use(cookieParser());
+
+const port = process.env.PORT || 5000;
+dotenv.config();
 
 export const JWT_SECRET = process.env.JWT_SECRET_KEY;
 
