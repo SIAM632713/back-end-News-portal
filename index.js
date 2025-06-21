@@ -12,7 +12,7 @@ dotenv.config();
 app.use(express.json());
 app.use(cookieParser());
 app.use(cors({
-    origin: "https://newsportal-pdak.onrender.com",
+    origin: "https://newsportal-two.vercel.app",
     credentials: true,
 }))
 
