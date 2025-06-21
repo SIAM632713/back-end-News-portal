@@ -6,10 +6,18 @@ import mongoose from 'mongoose';
 import cors from 'cors';
 import cookieParser from 'cookie-parser';
 
+import authRoute from "./src/route/auth.route.js";
+import userRoute from "./src/route/user.route.js";
+import reviewRoute from "./src/route/review.route.js";
+import articleRoute from "./src/route/article.route.js";
+import stateRoute from "./src/route/state.route.js";
+import uploadImage from "./src/utilitis/uploadImage.js";
+
 const app = express();
 
 app.use(cors({
-    origin: "http://localhost:5173", credentials: true,
+    origin: "http://localhost:5173",
+    credentials: true,
 }));
 app.use(express.json());
 app.use(cookieParser());
@@ -24,24 +32,20 @@ async function main() {
         res.send('Welcome to the Shopping App!');
     });
 
-    // Routes
-    import authRoute from "./src/route/auth.route.js";
-    import userRoute from "./src/route/user.route.js";
-    import reviewRoute from "./src/route/review.route.js";
-    import articleRoute from "./src/route/article.route.js";
-    import stateRoute from "./src/route/state.route.js";
-
+    // Route uses
     app.use("/api/auth", authRoute);
     app.use("/api/user", userRoute);
     app.use("/api/review", reviewRoute);
     app.use("/api/article", articleRoute);
     app.use("/api/state", stateRoute);
 
-    import uploadImage from "./src/utilitis/uploadImage.js";
     app.post('/uploadImage', async (req, res) => {
-        await uploadImage(req.body.image)
-            .then((url) => res.send(url))
-            .catch((err) => res.status(500).send(err));
+        try {
+            const url = await uploadImage(req.body.image);
+            res.send(url);
+        } catch (err) {
+            res.status(500).send(err);
+        }
     });
 
     app.listen(port, () => {
