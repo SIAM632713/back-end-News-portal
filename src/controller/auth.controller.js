@@ -43,7 +43,7 @@ export const Login=async (req,res)=>{
             return res.status(401).json({error:"User not found"});
         }
         const token=await generateToken(user._id)
-        res.cookie('token',token,{httpOnly:true,secure:false,sameSite:'lax'});
+        res.cookie('token',token,{httpOnly:true,secure:true,sameSite:'none'});
         res.status(200).json({message:"Successfully Login",token,user:{
                 _id:user._id,
                 username:user.username,
