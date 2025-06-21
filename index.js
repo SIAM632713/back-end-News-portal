@@ -16,7 +16,17 @@ import uploadImage from "./src/utilitis/uploadImage.js";
 const app = express();
 
 app.use(cors({
-    origin: ["http://localhost:5173","https://news-portal-roan.vercel.app"],
+    origin: function (origin, callback) {
+        const allowedOrigins = [
+            "http://localhost:5173",
+            "https://news-portal-roan.vercel.app"
+        ];
+        if (!origin || allowedOrigins.includes(origin)) {
+            callback(null, true);
+        } else {
+            callback(new Error("Not allowed by CORS"));
+        }
+    },
     credentials: true,
 }));
 app.use(express.json());
