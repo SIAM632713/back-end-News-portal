@@ -12,7 +12,6 @@ import reviewRoute from "./src/route/review.route.js";
 import articleRoute from "./src/route/article.route.js";
 import stateRoute from "./src/route/state.route.js";
 import uploadRoute from "./src/route/uploadRoute.js"
-// import uploadImage from "./src/utilitis/uploadImage.js";
 
 const app = express();
 
@@ -41,14 +40,6 @@ async function main() {
     app.use("/api/state", stateRoute);
     app.use("/api/upload",uploadRoute)
 
-    // app.post('/uploadImage', async (req, res) => {
-    //     try {
-    //         const url = await uploadImage(req.body.image);
-    //         res.send(url);
-    //     } catch (err) {
-    //         res.status(500).send(err);
-    //     }
-    // });
 
     app.listen(port, () => {
         console.log(`Server started on port ${port}`);

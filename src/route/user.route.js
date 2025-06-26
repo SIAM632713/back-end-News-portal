@@ -9,6 +9,6 @@ router.get('/get-singleuser/:id',verifyToken,getSingleUser)
 router.get('/get-alluser',getAllusers)
 router.delete('/delete-user/:id',verifyToken,verifyAdmin,deleteUser)
 router.post('/update-user/:id',verifyToken,updateUser)
-router.post("/update-user-role/:id",updateUserRole)
+router.post("/update-user-role/:id",verifyToken,verifyAdmin,updateUserRole)
 
 export default router;
